@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');//修改index页面的title等内容
 const CleanWebpackPlugin = require('clean-webpack-plugin');//清理dist目录
 const webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -10,7 +11,7 @@ module.exports = {
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
+        // publicPath: '/'
     },
     devtool:'inline-source-map',
     devServer: {
@@ -31,6 +32,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin(['dist']),
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new UglifyJSPlugin()
     ]
 };
