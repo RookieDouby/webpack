@@ -2,6 +2,10 @@
 import Print from './print';
 import {cube} from './math';
 
+if(process.env.NODE_ENV !== 'production') {
+    console.log("This is in development environment!!!");
+}
+
 function component() {
     var element = document.createElement('pre');
 
