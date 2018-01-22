@@ -1,11 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');//修改index页面的title等内容
 const CleanWebpackPlugin = require('clean-webpack-plugin');//清理dist目录
+const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        app: './src/index.js',
-        print: './src/print.js'
+        app: './src/index.js'
     },
     output: {
         filename: '[name].bundle.js',
@@ -14,7 +14,8 @@ module.exports = {
     },
     devtool:'inline-source-map',
     devServer: {
-        contentBase: './dist'
+        contentBase: './dist',
+        hot: true
     },
     module: {
         rules: [
@@ -28,6 +29,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Output Management'
         }),
-        new CleanWebpackPlugin(['dist'])
+        new CleanWebpackPlugin(['dist']),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ]
 };

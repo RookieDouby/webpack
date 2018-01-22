@@ -17,3 +17,10 @@ function element() {
 }
 
 document.body.appendChild(element());
+
+if(module.hot) {
+    module.hot.accept('./print.js', () => {
+        console.log("Accepted the updated printInfo module");
+        print();
+    });
+}
